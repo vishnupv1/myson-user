@@ -3,7 +3,6 @@ import "./CardComponent.css"; // Import the external CSS file
 
 const TopBrands = () => {
   const images = [
-    // "",
     "https://www.classeq.co.uk/uploads/products/classeq-g400/G400-basket-on-door.png",
     "https://www.dihr.com/sync/img/HT 11 ECO.jpg",
     "https://www.scotsice.com.au/_images/_dihr/RX101E.jpg",
@@ -15,7 +14,6 @@ const TopBrands = () => {
   ];
 
   const names = [
-    "",
     "Winter halter",
     "Bosch",
     "Convotherm",
@@ -27,62 +25,58 @@ const TopBrands = () => {
   ];
 
   const containerRef = useRef(null);
+  const contentRef = useRef(null);
 
   useEffect(() => {
     const container = containerRef.current;
-    let scrollInterval;
+    const content = contentRef.current;
 
-    const startScroll = () => {
-      scrollInterval = setInterval(() => {
-        if (
-          container.scrollLeft + container.clientWidth >=
-          container.scrollWidth
-        ) {
-          container.scrollLeft = 0;
-        } else {
-          container.scrollLeft += 1;
-        }
-      }, 20);
+    if (!container || !content) return;
+
+    const totalWidth = content.offsetWidth;
+    let currentPosition = 0;
+    let animationFrameId;
+
+    const scroll = () => {
+      currentPosition += 1;
+      if (currentPosition >= totalWidth / 2) {
+        currentPosition = 0;
+      }
+      container.scrollLeft = currentPosition;
+      animationFrameId = requestAnimationFrame(scroll);
     };
 
-    const stopScroll = () => {
-      clearInterval(scrollInterval);
-    };
-
-    startScroll();
-
-    container.addEventListener("mouseenter", stopScroll);
-    container.addEventListener("mouseleave", startScroll);
+    scroll();
 
     return () => {
-      stopScroll();
-      container.removeEventListener("mouseenter", stopScroll);
-      container.removeEventListener("mouseleave", startScroll);
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
     };
   }, []);
 
   return (
-    <>
-      <div className="main-container">
-        <h5
-          style={{
-            fontWeight: "600",
-            textAlign: "left",
-            fontFamily: "sans-serif",
-          }}
-        >
-          Shop from Top Brands
-        </h5>
+    <div className="main-container">
+      <h5
+        style={{
+          fontWeight: "600",
+          textAlign: "left",
+          fontFamily: "sans-serif",
+        }}
+      >
+        Shop from Top Brands
+      </h5>
 
-        <div
-          ref={containerRef}
-          className="card-container top-container"
-          style={{
-            overflowX: "hidden",
-            whiteSpace: "nowrap",
-          }}
-        >
-          {images.map((imageSrc, index) => (
+      <div
+        ref={containerRef}
+        className="card-container top-container"
+        style={{
+          overflowX: "hidden",
+          whiteSpace: "nowrap",
+        }}
+      >
+        <div ref={contentRef} style={{ display: "inline-block" }}>
+          {images.concat(images).map((imageSrc, index) => (
             <div
               className="top-brand-container"
               key={index}
@@ -96,20 +90,19 @@ const TopBrands = () => {
               <img
                 src={imageSrc}
                 className="top-brand-image"
-                alt={`category-${index}`}
-                // Adjust image size as needed
+                alt={`category-${index % images.length}`}
               />
               <div
                 className="black-text top-brand-name"
                 style={{ marginTop: "5px", color: "var(--black-12)" }}
               >
-                {names[index]} {/* Display the name under each image */}
+                {names[index % names.length]}
               </div>
             </div>
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
