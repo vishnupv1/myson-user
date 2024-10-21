@@ -1,0 +1,114 @@
+/* Blurry background */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    backdrop-filter: blur(8px); /* Blurred background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  /* Form container styling */
+  .form-container {
+    background-color: white;
+    padding: 20px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    max-width: 400px;
+    width: 100%;
+    height: 350px;
+    border-radius: 10px;
+  }
+  
+  /* Close button (cross) styling */
+ /* Close button (cross) styling */
+.close-button {
+  position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 32px;  /* Increased the font size */
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+    z-index: 10;  /* Ensure it's on top of other elements */
+    text-align: left;
+    font-size:large;
+  }
+  
+  .close-button:hover {
+    color: #f00;  /* Red on hover for better visibility */
+    background-color: whitesmoke;
+    border: solid 2px whitesmoke;
+  }
+  
+  /* Form styling */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font:200;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    border: 3px solid whitesmoke;
+    border-radius: 4px;
+    outline: none;
+  }
+  
+  h3 {
+    margin-right: 40px; /* To make room for the close button */
+    text-align: left;
+  }
+
+  .animated-button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    border: 2px solid red;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    background-color: #f00;
+    color: white;
+    font-weight:500;
+    border-radius: 3px;
+  }
+  
+  .animated-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -25%; /* Start outside the left side */
+    width: 35%; /* 25% of the button's width */
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.3); /* A bright, semi-transparent red */
+    animation: slideInOut 2s ease-in-out infinite;
+  }
+  
+  @keyframes slideInOut {
+    0% {
+      left: -25%;
+      right: 125%;
+    }
+    50% {
+      left: 100%; /* Move outside the right side */
+      right: 100%;
+    }
+    100% {
+      left: -25%; /* Move back to the left */
+      right: 125%;
+    }
+  }
+  
