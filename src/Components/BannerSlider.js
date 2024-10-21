@@ -5,11 +5,6 @@ const BannerVideo = () => {
 
   useEffect(() => {
     const videoElement = videoRef.current;
-
-    // Start video at 1:06 (66 seconds)
-    // videoElement.currentTime = 66;
-
-    // Automatically stop video at 3:05 (185 seconds)
     const stopVideoAtEnd = () => {
       if (videoElement.currentTime >= 185) {
         videoElement.pause();
@@ -26,7 +21,7 @@ const BannerVideo = () => {
 
   return (
     <div className="banner-container">
-      <video ref={videoRef} width="100%" height="500px" controls autoPlay muted>
+      <video ref={videoRef} width="100%" height="500px" autoPlay muted>
         <source src={video} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
