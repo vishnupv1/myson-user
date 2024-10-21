@@ -21,7 +21,7 @@ const BannerVideo = () => {
 
   return (
     <div className="banner-container">
-      <video ref={videoRef} width="100%" height="500px" autoPlay muted>
+      <video ref={videoRef} width="100%" height="500px" autoPlay loop muted>
         <source src={video} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
