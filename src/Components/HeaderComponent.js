@@ -80,7 +80,7 @@ const HeaderComponent = () => {
                 style={{
                   width: '100%',
                   maxWidth: '300px',
-                  height: 'auto',
+                  height: '60px',
                   maxHeight: '100px',
                   margin: '0 auto',
                   borderRadius: '20px',

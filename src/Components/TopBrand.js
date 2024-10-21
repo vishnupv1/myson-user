@@ -3,7 +3,7 @@ import "./CardComponent.css"; // Import the external CSS file
 
 const TopBrands = () => {
   const images = [
-    "",
+    // "",
     "https://www.classeq.co.uk/uploads/products/classeq-g400/G400-basket-on-door.png",
     "https://www.dihr.com/sync/img/HT 11 ECO.jpg",
     "https://www.scotsice.com.au/_images/_dihr/RX101E.jpg",
