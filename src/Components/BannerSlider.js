@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import video  from "../videos/video.mp4";
+import video from "../videos/video.mp4";
 const BannerVideo = () => {
   const videoRef = useRef(null);
 
@@ -7,7 +7,7 @@ const BannerVideo = () => {
     const videoElement = videoRef.current;
 
     // Start video at 1:06 (66 seconds)
-    videoElement.currentTime = 66;
+    // videoElement.currentTime = 66;
 
     // Automatically stop video at 3:05 (185 seconds)
     const stopVideoAtEnd = () => {
