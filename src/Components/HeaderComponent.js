@@ -102,7 +102,7 @@ const HeaderComponent = () => {
             )}
             <div className="logo">
               <img
-                src="/images/CompanyLogo.png"
+                src={CompanyLogo}
                 alt="Company Logo"
                 onClick={() => {
                   navigate("/");
