@@ -3,29 +3,21 @@ import "./ProductPage.css";
 import ProductImageZoom from "./ProductImageZoom";
 import FooterComponent from "./FooterComponent";
 import HeaderComponent from "./HeaderComponent";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import products from "../Constants/Products";
 const ProductPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [mainImage, setMainImage] = useState("");
-  const navigate = useNavigate();
   useEffect(() => {
-    if (!id) {
-      navigate("/");
-      return;
-    }
-
     const selectedProduct = products.find((item) => item.id === parseInt(id));
+    console.log(selectedProduct);
 
     if (selectedProduct) {
       setProduct(selectedProduct);
       setMainImage(selectedProduct.imageUrl[0]);
-    } else {
-      navigate("/");
     }
-  }, [id, navigate]);
-  
+  }, [id]);
   if (!product) {
     return <div>Loading...</div>;
   }
