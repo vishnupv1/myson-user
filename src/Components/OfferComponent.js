@@ -11,10 +11,6 @@ const OfferComponent = () => {
         ></div>
         <div 
           className='offer-image' 
-          style={{ backgroundImage: `url(https://phx-finish-me-prod.husky-2.rbcloud.io/media/ctqpymuv/15-things-you-should-never-put-in-the-dishwasher.jpg)` }}
-        ></div>
-        <div 
-          className='offer-image' 
           style={{ backgroundImage: `url(https://www.checkatrade.com/blog/wp-content/uploads/2020/05/Install-dishwasher-2.jpg)` }}
         ></div>
         <div 
