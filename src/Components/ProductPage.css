@@ -1,151 +1,109 @@
+/* ProductPage.css */
+
 .product-page {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 100%;
-  max-width:100%;
-  margin: 0 auto;
-  padding: 30px 100px;
-  min-height: 100vh;
-}
-
-.product-main-image {
-  border: solid 2px whitesmoke;
-  padding: 10px;
-  width: 100%; /* Make sure the image takes up the full container width */
-  max-width: 100%; /* Prevents the image from exceeding the container's width */
-  height: auto; /* Ensures the aspect ratio is maintained */
+  flex-wrap: wrap;
+  padding: 20px;
+  gap: 20px;
 }
 
 .product-image-container {
-  width: 50%;
-  position: sticky;
-  top: 150px;
-  align-self: flex-start;
-  height: 50%;
-  display: flex;
-}
-
-.product-details {
-  width: 100%;
-  padding-left: 100px;
-  padding-top: 20px;
+  flex: 1;
+  max-width: 50%;
 }
 
 .product-preview-images {
-  display: block; /* Ensure flex display */
-  gap: 10px;
-  margin-top: 10px;
-  justify-content: flex-start; /* Aligned to the left */
-}
-
-.product-preview-image {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  cursor: pointer;
-  border: 2px solid whitesmoke;
-}
-
-.product-description {
-  margin-top: 50px;
-}
-
-.product-price-div {
-  margin-top: 50px;
-}
-
-.product-price {
-  font-size: 24px;
-  font-weight: bold;
-  margin-top: 10px;
-}
-
-.product-actions {
   display: flex;
-  margin-top: 20px;
-  justify-content: flex-start; /* Align buttons to the left */
-  width: 100%;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.product-preview-images img {
+  width: 100px;
+  /* height: auto; */
 }
 
-.custom-btn {
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
+.product-main-image img {
+  width: 100%;
+  height: auto;
+}
+
+.product-details {
+  flex: 1;
+  max-width: 50%;
+}
+
+.product-description p,
+.specifications-title {
+  text-align: left;
+}
+
+/* Ensure the table remains responsive */
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.table-container th,
+.table-container td {
+  padding: 8px;
+  text-align: left;
+}
+
+.table-container th {
+  background-color: #f2f2f2;
 }
 
 .enquire-btn {
-  background-color: #f00;
+  padding: 10px 20px;
+  background-color: #d11616;
   color: white;
-  border-radius: 5px;
-  width: 50%;
-  height: 50px;
+  border: none;
+  cursor: pointer;
 }
 
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-  .product-details {
-    padding-left: 50px; /* Adjust padding for medium screens */
-  }
+.enquire-btn:hover {
+  background-color: #45a049;
 }
 
+/* Responsive layout */
 @media (max-width: 768px) {
   .product-page {
     flex-direction: column;
-    margin: 20px;
-    padding: 20px;
-    width: 100%;
+    /* padding: 10px; */
   }
 
-  .product-image-container {
-    width: 20%;
-    position: static; /* Remove sticky positioning on mobile */
-    padding-right: 0;
-  }
-
+  .product-image-container, 
   .product-details {
-    width: 100%;
-    padding-left: 0;
-    padding-top: 20px; /* Adjust padding */
+    max-width: 100%;
   }
 
-  .product-preview-image {
-    width: 50px; /* Adjust preview image size on mobile */
-    height: 50px;
+  .product-preview-images {
+    justify-content: center;
   }
 
-  .enquire-btn {
-    width: 100%; /* Ensure button spans full width */
+  .table-container table {
+    font-size: 14px;
+  }
+
+  .specifications-title {
+    font-size: 18px;
   }
 }
 
-
-@media (max-width: 768px) {
-  .product-image-container {
-    width: 100%;
-    position: static; /* Remove sticky positioning on mobile */
-    padding-right: 0;
-  }
-
-  .product-main-image {
-    width: 100%; /* Image will now be responsive on mobile */
-    max-width: 100%; /* Ensures it doesn't exceed the container width */
-    height: auto; /* Maintains the aspect ratio */
-  }
-
-  .product-preview-image {
-    width: 50px; /* Adjust preview image size on mobile */
-    height: 50px;
-  }
-
-  .product-details {
-    width: 100%;
-    padding-left: 0;
-    padding-top: 20px; /* Adjust padding */
-  }
-
+/* Mobile View */
+@media (max-width: 480px) {
   .enquire-btn {
-    width: 100%; /* Ensure button spans full width */
+    width: 100%;
+    /* padding: 12px; */
+  }
+
+  .product-description p {
+    font-size: 14px;
+  }
+
+  .table-container th,
+  .table-container td {
+    padding: 6px;
   }
 }
-

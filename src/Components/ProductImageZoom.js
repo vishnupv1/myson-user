@@ -9,7 +9,7 @@ const ProductImageZoom = ({ imageSrc }) => {
         <img
           src={imageSrc}
           alt="Product"
-          style={{ width: '500px', height: '500px', objectFit: 'cover', border:'solid 1px whitesmoke' }}
+          // style={{ width: '100%', height: '500px', objectFit: 'cover', border:'solid 1px whitesmoke' }}
         />
       </Zoom>
     </div>

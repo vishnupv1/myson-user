@@ -1,46 +1,23 @@
 import React, { useEffect, useState } from "react";
 import "./ProductPage.css";
 import ProductImageZoom from "./ProductImageZoom";
-// import Products from "../Constants/Products";
 import FooterComponent from "./FooterComponent";
 import HeaderComponent from "./HeaderComponent";
 import { useParams } from "react-router-dom";
 import products from "../Constants/Products";
 const ProductPage = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState(null); // State to store the selected product
-  const [mainImage, setMainImage] = useState(""); 
-  // const productImages = [
-  //   Products[0].imageUrl[0],
-  //   Products[1].imageUrl[0],
-  //   Products[2].imageUrl[0],
-  // ];
-  // console.log("in product page", Products.name);
-  // const product = {
-  //   productName:
-  //     "Noise Icon 2 Elite Edition 1.8'' Display with Metallic Body and Bluetooth Calling Smartwatch  (Elite Black Strap, Regular)",
-  //   availability: "Instock",
-  //   price: "1,999",
-  // };
-  // const tableData = [
-  //   { word: "L x D x H", description: "1220 x 670 x 1260" },
-  //   { word: "NO OF SHELVES", description: "BASE + 3" },
-  //   { word: "TEMPERATURE RANGE", description: "04 TO 14" },
-  //   { word: "REFRIGERATION TYPE", description: "VENTILATED" },
-  //   { word: "MOVEMENT", description: "BOOT / WHEEL" },
-  // ];
-
-  // State to track the current main image
+  const [product, setProduct] = useState(null);
+  const [mainImage, setMainImage] = useState("");
   useEffect(() => {
     const selectedProduct = products.find((item) => item.id === parseInt(id));
     console.log(selectedProduct);
-    
+
     if (selectedProduct) {
       setProduct(selectedProduct);
-      setMainImage(selectedProduct.imageUrl[0]); // Set the first image as the main image
+      setMainImage(selectedProduct.imageUrl[0]);
     }
   }, [id]);
-  // const [mainImage, setMainImage] = useState(productImages[0]);
   if (!product) {
     return <div>Loading...</div>;
   }
@@ -48,26 +25,22 @@ const ProductPage = () => {
     <>
       <HeaderComponent />
       <div className="product-page">
-        {/* Left Side - Main Product Image */}
         <div className="product-image-container">
-          {/* Below Main Image - Preview Images */}
           <div className="product-preview-images">
-            {/* {product.map((item) => ( */}
+            {product.imageUrl.map((image) => (
               <img
-                key={product.id}
-                src={product.imageUrl}
-                alt={`Product Preview ${product.id + 1}`}
+                key={product.id} // Use the index as key since each image might be different
+                src={image}
+                alt={`Product Preview`}
                 className="product-preview-image"
-                onClick={() => setMainImage(product.imageUrl)} // Set the clicked image as the main image
+                onClick={() => setMainImage(image)}
               />
-            {/* ))} */}
+            ))}
           </div>
           <div className="product-main-image">
             <ProductImageZoom imageSrc={mainImage} />
           </div>
         </div>
-
-        {/* Right Side - Product Details */}
         <div className="product-details">
           <span
             style={{
@@ -85,7 +58,6 @@ const ProductPage = () => {
               {product.availability}
             </span>
           </h6>
-          {/* Buttons */}
           <div className="product-actions">
             <button className="enquire-btn">Enquire Now</button>
           </div>
@@ -98,7 +70,9 @@ const ProductPage = () => {
                 <li>6mm shelf glass with ss mirror finish stopper</li>
                 <li>High bright led lighting: pure white / warm white</li>
                 <li>304 grade steel finish with matte & mirror combination</li>
-                <li>Changeable Corian and engraving work with unique insertion</li>
+                <li>
+                  Changeable Corian and engraving work with unique insertion
+                </li>
               </ol>
             </p>
           </div>
