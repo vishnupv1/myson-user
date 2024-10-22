@@ -17,6 +17,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import products from "../Constants/Products";
 import { useNavigate } from "react-router-dom";
+import CompanyLogo from "../images/CompanyLogo.png";
 const HeaderComponent = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -101,9 +102,11 @@ const HeaderComponent = () => {
             )}
             <div className="logo">
               <img
-                src={require("../images/CompanyLogo.png")}
+                src={CompanyLogo}
                 alt="Company Logo"
-                onClick={()=>{navigate("/")}}
+                onClick={() => {
+                  navigate("/");
+                }}
                 className="img-fluid"
                 style={{
                   width: "100%",
@@ -113,7 +116,7 @@ const HeaderComponent = () => {
                   margin: "0 auto",
                   borderRadius: "20px",
                   backgroundColor: "white",
-                  cursor:'pointer'
+                  cursor: "pointer",
                 }}
               />
             </div>
