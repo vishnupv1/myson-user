@@ -6,8 +6,10 @@ const products = [
                  " With its two minute wash cycles, this machine is capable of cleaning up to 480 pint glasses per hour.",
                  "With a digital LED display, intuitive colour coded lighting and universally recognised symbols, this machine is incredibly easy to use.",
                  "Additionally, its clever software constantly monitors wash cycles, temperatures, chemical usage and any errors giving valuable data which is used to improve operational efficiencies."],
-    imageUrl:"https://www.classeq.co.uk/uploads/products/classeq-g400/G400-basket-on-door.png",
-    price:"1,45,000"
+    imageUrl:["https://www.classeq.co.uk/uploads/products/classeq-g400/G400-basket-on-door.png"],
+    price:"1,45,000",
+    specifications:['Good glass','Vibrant Design']
+
 },
 {
     id:2,
@@ -16,8 +18,10 @@ const products = [
         "With its three minute wash cycle, this machine is capable of cleaning up to 360 plates per hour.",
         "With a digital LED display, intuitive colour coded lighting and universally recognised symbols, this machine is incredibly easy to use.", 
         "Additionally, its clever software constantly monitors wash cycles,temperatures, chemical usage and any errors giving valuable data which is used to improve operational efficiencies"],
-    imageUrl:"https://www.classeq.co.uk/uploads/products/classeq-g500/G500_Rack_On_Door.png",
-    price:"1,75,000"
+    imageUrl:["https://www.classeq.co.uk/uploads/products/classeq-g500/G500_Rack_On_Door.png"],
+    price:"1,75,000",
+    specifications:['Good glass','Vibrant Design']
+
 },
 {
     id:3,
@@ -27,8 +31,10 @@ const products = [
         "Built in rinse aid pump Thermostop system Possibility of corner installation.", 
         "Pump filter Easy to access for maintanance tank and boiler thermometers Fully automatic process.", 
         "Easily removable basket support .Baskets supplied :2*glassses.2*cutlery basket Dimensions(L*W*H)720*735*1445mm  "],
-    imageUrl:"https://www.dihr.com/sync/img/HT 11 ECO.jpg",
-    price:"1,30,000"
+    imageUrl:["https://www.dihr.com/sync/img/HT 11 ECO.jpg"],
+    price:"1,30,000",
+    specifications:['Good glass','Vibrant Design']
+
 },
 {
     id:4,
@@ -40,8 +46,10 @@ const products = [
         "Low voltage electronic soft touch panel with IP65 security level, manufactured to be userfriendly and easy to be cleaned.",
         "S/S washing and rinsing arms.",
         "These are removable without using any tool, for easier cleaning operation or to help the change of working direction on the RX 101E."],
-    imageUrl:"https://www.scotsice.com.au/_images/_dihr/RX101E.jpg",
-    price:"1,45,000"
+    imageUrl:["https://www.scotsice.com.au/_images/_dihr/RX101E.jpg"],
+    price:"1,45,000",
+    specifications:['Good glass','Vibrant Design']
+
 },
 {
     id:5,
@@ -54,8 +62,10 @@ const products = [
 "Self-cleaning cycle on the TOUCH versions",
 "Soft Start wash pump on the TOUCH versions",
 "Additional upper surface filter (on demand only for GS 50 ECO / GS50 / GS50 T / GS 85 T) - Dimensions - 400 x 495 x 585 H "],
-    imageUrl:"https://5.imimg.com/data5/KI/TC/DV/SELLER-55362325/under-counter-glass-and-dishwashing-machine-500x500-500x500.jpg",
-    price:"1,25,000"
+    imageUrl:["https://5.imimg.com/data5/KI/TC/DV/SELLER-55362325/under-counter-glass-and-dishwashing-machine-500x500-500x500.jpg"],
+    price:"1,25,000",
+    specifications:['Good glass','Vibrant Design']
+
 },
 {
     id:6,
@@ -64,8 +74,10 @@ const products = [
         "W x D x H : 875 x 797 x 1066",
 "Empty weight without options** / accessories in kg   :    125,5 ",                             
 "Rated power consumption in kW (3N~ 380-415V 50/60Hz (3/N/PE) :17.2-20.4"],
-imageUrl:"https://www.angliacateringequipment.com/wp-content/uploads/2022/09/Convotherm-Maxx-10.10-Electric-Combi-Oven-101-Shelves-GN-11-400x400.webp",
-    price:"1,20,000"
+imageUrl:["https://www.angliacateringequipment.com/wp-content/uploads/2022/09/Convotherm-Maxx-10.10-Electric-Combi-Oven-101-Shelves-GN-11-400x400.webp"],
+    price:"1,20,000",
+    specifications:['Good glass','Vibrant Design']
+
 },
 {
     id:7,
@@ -76,8 +88,10 @@ imageUrl:"https://www.angliacateringequipment.com/wp-content/uploads/2022/09/Con
         "2.8 ltr water consuption per cycle",
         "Washing Temperature at 55-60°C(water supply at a minium of 2 bar and 50°C)",
         "Rinsing Temperature at 80-85°C(water supply at a minimum of 2 bar and 50°C)"],
-    imageUrl:"https://5.imimg.com/data5/SELLER/Default/2024/7/433497978/YF/RL/NU/3241702/western-hoodtype-dishwasher-500x500.jpeg",
-    price:"1,75,000"
+    imageUrl:["https://5.imimg.com/data5/SELLER/Default/2024/7/433497978/YF/RL/NU/3241702/western-hoodtype-dishwasher-500x500.jpeg"],
+    price:"1,75,000",
+    specifications:['Good glass','Vibrant Design']
+
 },
 {
     id:8,
@@ -86,8 +100,9 @@ imageUrl:"https://www.angliacateringequipment.com/wp-content/uploads/2022/09/Con
         "glass-touch display led light in the cooking chamber",
         "triple glass cooking chamber door with right hinge","Conv0 clean +fully automatic cleaning systems with economy ,regular and express modes(optionally with single measure dispensing)",
         "Filter care interface"],
-    imageUrl:"https://5.imimg.com/data5/SELLER/Default/2020/10/GQ/HQ/YN/30836614/combi-oven-convotherm-4-easy-touch-gas-injection-6-1-500x500.jpg",
-    price:"1,50,000"
+    imageUrl:["https://5.imimg.com/data5/SELLER/Default/2020/10/GQ/HQ/YN/30836614/combi-oven-convotherm-4-easy-touch-gas-injection-6-1-500x500.jpg"],
+    price:"1,50,000",
+    specifications:['Good glass','Vibrant Design']
 }
 
 ]
