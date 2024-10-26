@@ -145,7 +145,7 @@ const HeaderComponent = () => {
         currentIndex = nextIndex;
       };
 
-      setProductName(placeholderItems[0]);
+      setProductName(`\u00A0 ${placeholderItems[0]}`);
       interval = setInterval(animatePlaceholder, 3000);
     }
 
@@ -164,7 +164,7 @@ const HeaderComponent = () => {
   const handleBlur = () => {
     setIsFocused(false);
     if (!inputValue) {
-      setProductName(placeholderItems[0]);
+      setProductName(`\u00A0 ${placeholderItems[0]}`);
     }
   };
 
