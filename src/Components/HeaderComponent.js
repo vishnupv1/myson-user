@@ -18,17 +18,21 @@ import {
 import products from "../Constants/Products";
 import { useNavigate } from "react-router-dom";
 import CompanyLogo from "../images/CompanyLogo.png";
+
 const HeaderComponent = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [inputWidth, setInputWidth] = useState(0); // Track the input width dynamically
-  const [isFocused, setIsFocused] = useState(false); // State for handling blur effect
-  const [showModal, setShowModal] = useState(false); // State to control modal visibility\
-
+  const [inputWidth, setInputWidth] = useState(0);
+  const [showModal, setShowModal] = useState(false);
+  const [productName, setProductName] = useState("");
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  const [isFocused, setIsFocused] = useState(false);
   const [inputTop, setInputTop] = useState(0);
 
   // Reference for input width
   const inputRef = React.useRef(null);
+
   const navigate = useNavigate();
   useEffect(() => {
     if (inputRef.current) {
@@ -37,6 +41,46 @@ const HeaderComponent = () => {
       setInputTop(inputRect.bottom); // Set modal top position right below the input field
     }
   }, [showModal]); // Run when the modal is shown
+
+  useEffect(() => {
+    let currentIndex = 0;
+    let interval;
+
+    // Only run animation if input is not focused and empty
+    if (!isFocused && !inputValue) {
+      const animatePlaceholder = async () => {
+        const nextIndex = (currentIndex + 1) % placeholderItems.length;
+
+        setIsAnimating(true);
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        setProductName(placeholderItems[nextIndex]);
+        setIsAnimating(false);
+
+        currentIndex = nextIndex;
+      };
+
+      setProductName(placeholderItems[0]);
+      interval = setInterval(animatePlaceholder, 3000);
+    }
+
+    return () => clearInterval(interval);
+  }, [isFocused, inputValue]);
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleFocus = () => {
+    setIsFocused(true);
+    setShowModal(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+    // Only show placeholder again if input is empty
+    if (!inputValue) {
+      setProductName(placeholderItems[0]);
+    }
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -59,7 +103,14 @@ const HeaderComponent = () => {
     setShowModal(false);
     setIsFocused(false); // Remove blur effect
   };
-
+  const placeholderItems = [
+    `"dish wahser"`,
+    `"bosch"`,
+    `"lg"`,
+   `"premium"`,
+    `"samsung"`,
+    `"haier"`,
+  ];
   return (
     <header
       style={{
@@ -134,19 +185,43 @@ const HeaderComponent = () => {
               marginTop: isMobile ? "10px" : "0",
             }}
           >
-            <input
-              ref={inputRef}
-              style={{
-                border: "none",
-                width: "100%",
-                maxWidth: "500px",
-                borderRadius: "5px",
-                backgroundColor: "whitesmoke",
-                padding: "10px",
-              }}
-              placeholder="Search For Products, brands..."
-              onFocus={() => setShowModal(true)} // Show modal on focus
-            />
+            <div
+              className="search-input-wrapper"
+              style={{ position: "relative", width: "100%", maxWidth: "500px" }}
+            >
+              <input
+                ref={inputRef}
+                style={{
+                  border: "none",
+                  width: "100%",
+                  borderRadius: "5px",
+                  backgroundColor: "whitesmoke",
+                  padding: "10px",
+                }}
+                placeholder={isFocused?"":"Search for "}
+                value={inputValue}
+                onChange={handleInputChange}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+              />
+              {!isFocused && !inputValue && (
+                <div
+                  className={`animated-product ${
+                    isAnimating ? "fade-out" : "fade-in"
+                  }`}
+                  style={{
+                    position: "absolute",
+                    left: "85px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    color: "#999",
+                    pointerEvents: "none",
+                  }}
+                >
+                  {productName}
+                </div>
+              )}
+            </div>
             <button
               style={{
                 backgroundColor: "#d86f70",
