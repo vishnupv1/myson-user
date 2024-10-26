@@ -110,7 +110,7 @@ button {
 
   position: fixed;
   right: 50px;
-  width: 110%;
+  /* width: 110%; */
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;

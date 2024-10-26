@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -15,14 +15,13 @@ import {
   faLinkedin,
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
-import products from "../Constants/Products";
 import { useNavigate } from "react-router-dom";
 import CompanyLogo from "../images/CompanyLogo.png";
 
 const HeaderComponent = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [inputWidth, setInputWidth] = useState(0);
+  // const [inputWidth, setInputWidth] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [productName, setProductName] = useState("");
   const [isAnimating, setIsAnimating] = useState(false);
@@ -30,23 +29,110 @@ const HeaderComponent = () => {
   const [isFocused, setIsFocused] = useState(false);
   const [inputTop, setInputTop] = useState(0);
 
-  // Reference for input width
+  const categories = useMemo(
+    () => [
+      {
+        title: "Dish Washer",
+        items: [
+          {
+            name: "Free Standing",
+            image:
+              "https://media3.bosch-home.com/Images/436x245/MCIM01798539_DW_FSD_Carousel_FSD_60_526x310.webp",
+          },
+          {
+            name: "Built In",
+            image:
+              "https://www.ifbappliances.com/media/opti_image/webp/catalog/product/cache/ab27e2d12b7baa9faaaff0d7d3ddf1f2/n/e/neptune_bi2_fv.webp",
+          },
+          {
+            name: "Counter Top",
+            image:
+              "https://www.ifbappliances.com/media/opti_image/webp/catalog/product/cache/ab27e2d12b7baa9faaaff0d7d3ddf1f2/1/8/1800x1800_vx14_front.webp",
+          },
+          {
+            name: "Commercial",
+            image:
+              "https://cpimg.tistatic.com/08838150/b/4/Commercial-Hood-Type-Dishwasher.jpg",
+          },
+        ],
+      },
+      {
+        title: "Shop By Brand",
+        items: [
+          {
+            name: "Bosch",
+            image:
+              "https://logos-world.net/wp-content/uploads/2020/08/Bosch-Emblem.png",
+          },
+          {
+            name: "LG",
+            image:
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqfQ8u2jAetj1SFGtK_bZGo38RqFuBaN5W0OtoYgJqS0eAelSiycE1qfbMqOlk5ZtIMmM&usqp=CAU",
+          },
+          {
+            name: "Samsung",
+            image:
+              "https://i.pinimg.com/564x/a1/79/a4/a179a400366bf6f5de2e76e42285a446.jpg",
+          },
+          {
+            name: "Haier",
+            image:
+              "https://cdn-au.onetrust.com/logos/4d07804a-f4e0-42e4-89de-ef883f73d081/018e731e-5c5a-7ac6-a2f6-35c236c7a752/7a2536ce-1ff5-4dde-a12b-32b1bae9c5b0/Haier_Lock-up_White_on_Process_Gradiant.jpg",
+          },
+        ],
+      },
+      {
+        title: "Offer Zone",
+        items: [
+          {
+            name: "Clearance Sale",
+            image:
+              "https://img.freepik.com/free-vector/clearance-sale-banner-creative-design_1017-15627.jpg",
+          },
+          {
+            name: "Bundle Deals",
+            image:
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMsXkY9I77vxQ9gJ2ARUVuGzTY-YJu1thkVg&s",
+          },
+          {
+            name: "Festival Offers",
+            image:
+              "https://img.freepik.com/premium-vector/diwali-festive-offer-background-design-template_649214-869.jpg",
+          },
+          {
+            name: "Season Special",
+            image:
+              "https://img.freepik.com/premium-vector/discount-label-with-season-sale-special-offer-vector-illustration-discount-sticker-retail-market_419341-2171.jpg",
+          },
+        ],
+      },
+    ],
+    []
+  );
+  const placeholderItems = useMemo(() => {
+    return [
+      `"dish wahser"`,
+      `"bosch"`,
+      `"lg"`,
+      `"premium"`,
+      `"samsung"`,
+      `"haier"`,
+    ];
+  }, []);
   const inputRef = React.useRef(null);
-
   const navigate = useNavigate();
+
   useEffect(() => {
     if (inputRef.current) {
-      setInputWidth(inputRef.current.offsetWidth); // Dynamically track input width
+      // setInputWidth(inputRef.current.offsetWidth);
       const inputRect = inputRef.current.getBoundingClientRect();
-      setInputTop(inputRect.bottom); // Set modal top position right below the input field
+      setInputTop(inputRect.bottom);
     }
-  }, [showModal]); // Run when the modal is shown
+  }, [showModal]);
 
   useEffect(() => {
     let currentIndex = 0;
     let interval;
-
-    // Only run animation if input is not focused and empty
     if (!isFocused && !inputValue) {
       const animatePlaceholder = async () => {
         const nextIndex = (currentIndex + 1) % placeholderItems.length;
@@ -64,7 +150,8 @@ const HeaderComponent = () => {
     }
 
     return () => clearInterval(interval);
-  }, [isFocused, inputValue]);
+  }, [isFocused, inputValue, placeholderItems]);
+
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
@@ -76,7 +163,6 @@ const HeaderComponent = () => {
 
   const handleBlur = () => {
     setIsFocused(false);
-    // Only show placeholder again if input is empty
     if (!inputValue) {
       setProductName(placeholderItems[0]);
     }
@@ -92,25 +178,18 @@ const HeaderComponent = () => {
   }, []);
 
   const handleMenuToggle = () => {
-    setIsMenuOpen((prev) => !prev); // Toggle the menu open state
+    setIsMenuOpen((prev) => !prev);
   };
 
   const handleCloseMenu = () => {
-    setIsMenuOpen(false); // Close the menu
+    setIsMenuOpen(false);
   };
 
   const closeModal = () => {
     setShowModal(false);
-    setIsFocused(false); // Remove blur effect
+    setIsFocused(false);
   };
-  const placeholderItems = [
-    `"dish wahser"`,
-    `"bosch"`,
-    `"lg"`,
-   `"premium"`,
-    `"samsung"`,
-    `"haier"`,
-  ];
+
   return (
     <header
       style={{
@@ -198,7 +277,11 @@ const HeaderComponent = () => {
                   backgroundColor: "whitesmoke",
                   padding: "10px",
                 }}
-                placeholder={isFocused?"":"Search for "}
+                placeholder={
+                  isFocused
+                    ? "Search for products,brands and more.."
+                    : "Search for "
+                }
                 value={inputValue}
                 onChange={handleInputChange}
                 onFocus={handleFocus}
@@ -319,44 +402,72 @@ const HeaderComponent = () => {
 
         {/* Modal with images */}
         {showModal && (
-          <div
-            className="modal"
-            style={{
-              top: `${inputTop + 10}px`, // Set modal just below input
-            }}
-            onClick={closeModal} // Close modal when clicking outside
-          >
+          <div className="modal-overlay" onClick={closeModal}>
             <div
-              className="modal-div"
-              style={{
-                width: inputWidth + 100,
-              }}
-              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+              className="modal-container"
+              style={{ marginTop: `${inputTop + 10}px` }}
+              onClick={(e) => e.stopPropagation()}
             >
-              <button className="close-button" onClick={closeModal}>
-                ×
-              </button>
-
-              <div className="modal-div-row">
-                {products.map((product, index) => (
-                  <div style={{ display: "block" }}>
-                    <img
-                      key={index}
-                      src={product.imageUrl[0]} // Replace with your image URLs
-                      alt={`Product ${index}`}
-                      style={{
-                        width: "90px",
-                        height: "90px",
-                        borderRadius: "10px",
-                        border: "solid 2px whitesmoke",
-                      }}
+              <div className="modal-header">
+                {/* <h3 className="modal-title">Best Sellers</h3> */}
+                <button onClick={closeModal} className="close-button">
+                  <svg
+                    className="close-icon"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
                     />
-                    <h6 style={{ font: "small-caption", color: "black" }}>
-                      {product.name}
-                    </h6>
+                  </svg>
+                </button>
+              </div>
+
+              <div className="categories-container">
+                {categories.map((category, categoryIndex) => (
+                  <div key={categoryIndex} className="category">
+                    <h4 className="category-title">{category.title}</h4>
+                    <div className="items-grid">
+                      {category.items.map((item, itemIndex) => (
+                        <div key={itemIndex} className="item-card">
+                          <div className="item-image-container">
+                            <img
+                              src={item.image}
+                              alt={item.name}
+                              className="item-image"
+                            />
+                          </div>
+                          <span className="item-name">{item.name}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 ))}
               </div>
+
+              {inputValue && (
+                <div className="search-suggestions">
+                  <h4 className="suggestions-title">Popular Searches</h4>
+                  <div className="suggestions-grid">
+                    {[
+                      "Dishwasher under 30000",
+                      "Best Rated Dishwashers",
+                      "Energy Efficient Models",
+                      "Premium Brands",
+                      "Latest Models",
+                      "Budget Friendly",
+                    ].map((suggestion, index) => (
+                      <div key={index} className="suggestion-tag">
+                        {suggestion}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         )}
