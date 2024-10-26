@@ -280,7 +280,7 @@ const HeaderComponent = () => {
                 placeholder={
                   isFocused
                     ? "Search for products,brands and more.."
-                    : "Search for "
+                    : "Search for  "
                 }
                 value={inputValue}
                 onChange={handleInputChange}
