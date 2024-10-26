@@ -37,7 +37,7 @@ const HeaderComponent = () => {
           {
             name: "Free Standing",
             image:
-              "https://media3.bosch-home.com/Images/436x245/MCIM01798539_DW_FSD_Carousel_FSD_60_526x310.webp",
+              "https://i.pinimg.com/564x/3e/ea/17/3eea17fb1b40e44d5c6374f985e1d89e.jpg",
           },
           {
             name: "Built In",
@@ -99,8 +99,13 @@ const HeaderComponent = () => {
             image:
               "https://img.freepik.com/premium-vector/diwali-festive-offer-background-design-template_649214-869.jpg",
           },
+        ],
+      },
+      {
+        title: "Sale",
+        items: [
           {
-            name: "Season Special",
+            name: "Offer Sale",
             image:
               "https://img.freepik.com/premium-vector/discount-label-with-season-sale-special-offer-vector-illustration-discount-sticker-retail-market_419341-2171.jpg",
           },
@@ -109,14 +114,76 @@ const HeaderComponent = () => {
     ],
     []
   );
+  // const [currentIndexes, setCurrentIndexes] = useState(
+  //   categories.map(() => 0) // Initialize the current index for each category
+  // );
+  // const CategoriesCarousel = ({ categories }) => {
+  const [currentIndexes, setCurrentIndexes] = useState(categories.map(() => 0));
+  const [isHovered, setIsHovered] = useState(
+    Array(categories.length).fill(false)
+  );
+
+  // Auto-rotate images
+  useEffect(() => {
+    const intervals = categories.map((category, categoryIndex) => {
+      return setInterval(() => {
+        if (!isHovered[categoryIndex]) {
+          setCurrentIndexes((prevIndexes) => {
+            const newIndexes = [...prevIndexes];
+            newIndexes[categoryIndex] =
+              (newIndexes[categoryIndex] + 1) % category.items.length;
+            return newIndexes;
+          });
+        }
+      }, 3000); // Rotate every 3 seconds
+    });
+
+    return () => intervals.forEach((interval) => clearInterval(interval));
+  }, [categories, isHovered]);
+
+  const handleMouseEnter = (categoryIndex) => {
+    setIsHovered((prev) => {
+      const newHovered = [...prev];
+      newHovered[categoryIndex] = true;
+      return newHovered;
+    });
+  };
+
+  const handleMouseLeave = (categoryIndex) => {
+    setIsHovered((prev) => {
+      const newHovered = [...prev];
+      newHovered[categoryIndex] = false;
+      return newHovered;
+    });
+  };
+
+  // const handleDotClick = (categoryIndex, itemIndex) => {
+  //   setCurrentIndexes((prev) => {
+  //     const newIndexes = [...prev];
+  //     newIndexes[categoryIndex] = itemIndex;
+  //     return newIndexes;
+  //   });
+  // };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndexes((prevIndexes) =>
+        prevIndexes.map(
+          (currentIndex, idx) =>
+            (currentIndex + 1) % categories[idx].items.length
+        )
+      );
+    }, 3000); // Change image every 3 seconds
+    return () => clearInterval(interval);
+  }, [categories]);
   const placeholderItems = useMemo(() => {
     return [
-      `"dish wahser"`,
-      `"bosch"`,
-      `"lg"`,
-      `"premium"`,
-      `"samsung"`,
-      `"haier"`,
+      `"Dish Wahser"`,
+      `"Bosch"`,
+      `"LG"`,
+      `"Premium"`,
+      `"Samsung"`,
+      `"Haier"`,
     ];
   }, []);
   const inputRef = React.useRef(null);
@@ -428,27 +495,65 @@ const HeaderComponent = () => {
               </div>
 
               <div className="categories-container">
-                {categories.map((category, categoryIndex) => (
-                  <div key={categoryIndex} className="category">
-                    <h4 className="category-title">{category.title}</h4>
-                    <div className="items-grid">
-                      {category.items.map((item, itemIndex) => (
-                        <div key={itemIndex} className="item-card">
-                          <div className="item-image-container">
+                <h4 className="text-xl font-semibold mb-4">Best Sellers</h4>
+                <div className="flex gap-6 overflow-x-auto pb-4">
+                  {categories.map((category, categoryIndex) => (
+                    <div
+                      key={categoryIndex}
+                      className="flex-shrink-0"
+                      onMouseEnter={() => handleMouseEnter(categoryIndex)}
+                      onMouseLeave={() => handleMouseLeave(categoryIndex)}
+                    >
+                      <div className="w-48 group">
+                        <div className="relative aspect-square mb-2 rounded-lg overflow-hidden">
+                          {category.items.map((item, itemIndex) => (
                             <img
+                              key={itemIndex}
                               src={item.image}
-                              alt={item.name}
-                              className="item-image"
+                              alt={`${category.title} - ${item.name}`}
+                              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+                                itemIndex === currentIndexes[categoryIndex]
+                                  ? "opacity-100"
+                                  : "opacity-0"
+                              }`}
                             />
-                          </div>
-                          <span className="item-name">{item.name}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
+                          ))}
 
+                          {/* Navigation dots */}
+                          {/* <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1.5">
+                            {category.items.map((_, itemIndex) => (
+                              <button
+                                key={itemIndex}
+                                onClick={() =>
+                                  handleDotClick(categoryIndex, itemIndex)
+                                }
+                                className={`w-2 h-2 rounded-full transition-all ${
+                                  itemIndex === currentIndexes[categoryIndex]
+                                    ? "bg-white w-4"
+                                    : "bg-white/50 hover:bg-white/75"
+                                }`}
+                                aria-label={`Go to image ${itemIndex + 1}`}
+                              />
+                            ))}
+                          </div> */}
+
+                          {/* Hover overlay */}
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-200" />
+                        </div>
+
+                        <div className="text-center">
+                          <h5 className="text-sm font-medium text-gray-700 group-hover:text-teal-600 transition-colors">
+                            {category.title}
+                          </h5>
+                          {/* <p className="text-xs text-gray-500 mt-1">
+                            {category.items[currentIndexes[categoryIndex]].name}
+                          </p> */}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
               {inputValue && (
                 <div className="search-suggestions">
                   <h4 className="suggestions-title">Popular Searches</h4>

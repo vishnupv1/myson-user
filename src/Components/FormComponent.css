@@ -1,4 +1,4 @@
-/* Blurry background */
+/* Overlay styles */
 .overlay {
   position: fixed;
   top: 0;
@@ -6,9 +6,7 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  /* Semi-transparent black */
   backdrop-filter: blur(8px);
-  /* Blurred background */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,7 +26,6 @@
 }
 
 /* Close button (cross) styling */
-/* Close button (cross) styling */
 .close-button {
   position: absolute;
   top: 20px;
@@ -36,19 +33,16 @@
   background: none;
   border: none;
   font-size: 32px;
-  /* Increased the font size */
   font-weight: bold;
   cursor: pointer;
   color: #333;
   z-index: 10;
-  /* Ensure it's on top of other elements */
   text-align: left;
   font-size: large;
 }
 
 .close-button:hover {
   color: #f00;
-  /* Red on hover for better visibility */
   background-color: whitesmoke;
   border: solid 2px whitesmoke;
 }
@@ -74,7 +68,6 @@ input {
 
 h3 {
   margin-right: 40px;
-  /* To make room for the close button */
   text-align: left;
 }
 
@@ -97,12 +90,9 @@ h3 {
   position: absolute;
   top: 0;
   left: -25%;
-  /* Start outside the left side */
   width: 35%;
-  /* 25% of the button's width */
   height: 100%;
   background-color: rgba(255, 255, 255, 0.3);
-  /* A bright, semi-transparent red */
   animation: slideInOut 2s ease-in-out infinite;
 }
 
@@ -114,13 +104,11 @@ h3 {
 
   50% {
     left: 100%;
-    /* Move outside the right side */
     right: 100%;
   }
 
   100% {
     left: -25%;
-    /* Move back to the left */
     right: 125%;
   }
 }
@@ -177,20 +165,18 @@ h3 {
   justify-content: center;
 }
 
-
 .modal-container {
   background-color: white;
   border-radius: 0.5rem;
   margin: 1rem;
   max-width: 64rem;
-  width: 100%;
+  width: 45%;
   padding: 1rem;
-  max-height: 80vh;
+  max-height: 60vh;
   overflow-y: auto;
-  scrollbar-width: thin; /* For Firefox */
-  scrollbar-color: #cbd5e1 transparent; /* For Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
 }
-
 
 .modal-header {
   display: flex;
@@ -226,7 +212,6 @@ h3 {
 }
 
 .category {
-  border-bottom: 1px solid #e5e7eb;
   padding-bottom: 1rem;
 }
 
@@ -242,14 +227,21 @@ h3 {
 
 .items-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
 
-@media (min-width: 640px) {
-  .items-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
+.categories-flex {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.categories-flex img {
+  width: 100px;
+  height: 100px;
+  border-radius: 6px;
+  border: 1.5px solid #e6e6e6;
+  object-fit: cover;
 }
 
 .item-card {
@@ -259,33 +251,19 @@ h3 {
   cursor: pointer;
 }
 
-.item-image-container {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1;
-  margin-bottom: 0.5rem;
-}
-
-.item-image {
-  border-radius: 0.5rem;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.2s;
-}
-
-.item-card:hover .item-image {
+.item-card:hover {
   transform: scale(1.05);
 }
 
 .item-name {
-  font-size: 0.875rem;
+  font-size: 0.7rem;
   text-align: center;
   color: #4b5563;
+  font-weight: bold;
 }
 
 .item-card:hover .item-name {
-  color: #2563eb;
+  color: #588381;
 }
 
 .search-suggestions {
@@ -342,4 +320,723 @@ h3 {
   font-size: 1.125rem;
   font-weight: 600;
   color: #1f2937;
+}
+
+.item-image {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.item-image.visible {
+  opacity: 1;
+}
+
+.item-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1;
+}
+
+/* Container styles */
+.categories-container {
+  width: 100%;
+  padding: 1.5rem;
+  background-color: white;
+}
+
+/* Flex container for categories */
+.flex {
+  display: flex;
+}
+
+.gap-6 {
+  gap: 1.5rem;
+}
+
+.overflow-x-auto {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #CBD5E1 transparent;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.overflow-x-auto::-webkit-scrollbar {
+  height: 6px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb {
+  background-color: #CBD5E1;
+  border-radius: 20px;
+}
+
+/* Category card styles */
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+.w-48 {
+  width: 100px;
+}
+
+.group {
+  position: relative;
+  transition: transform 0.2s ease-in-out;
+}
+
+.group:hover {
+  transform: translateY(-2px);
+}
+
+/* Image container styles */
+.relative {
+  position: relative;
+}
+
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+/* Image styles */
+.absolute {
+  position: absolute;
+}
+
+.inset-0 {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.object-cover {
+  object-fit: cover;
+}
+
+/* Image transition */
+.transition-opacity {
+  transition-property: opacity;
+}
+
+.duration-500 {
+  transition-duration: 500ms;
+}
+
+.opacity-100 {
+  opacity: 1;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+/* Navigation dots container */
+.bottom-2 {
+  bottom: 0.5rem;
+}
+
+.left-0 {
+  left: 0;
+}
+
+.right-0 {
+  right: 0;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.gap-1\.5 {
+  gap: 0.375rem;
+}
+
+/* Navigation dot styles */
+.w-2 {
+  width: 0.5rem;
+}
+
+.h-2 {
+  height: 0.5rem;
+}
+
+.w-4 {
+  width: 1rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.transition-all {
+  transition-property: all;
+}
+
+/* Hover overlay */
+.bg-black\/0 {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.group-hover\:bg-black\/10:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.transition-colors {
+  transition-property: background-color, border-color, color, fill, stroke;
+}
+
+.duration-200 {
+  transition-duration: 200ms;
+}
+
+/* Text styles */
+.text-center {
+  text-align: center;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.text-gray-700 {
+  color: rgb(55, 65, 81);
+}
+
+.text-gray-500 {
+  color: rgb(107, 114, 128);
+}
+
+.group-hover\:text-teal-600:hover {
+  color: rgb(13, 148, 136);
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+/* Heading styles */
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+/* Navigation dot states */
+button.w-2.h-2.rounded-full {
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+button.w-2.h-2.rounded-full:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+/* Animation for image transitions */
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: .5;
+  }
+}
+
+/* Active states for navigation */
+.active-dot {
+  background-color: white;
+  width: 1rem;
+}
+
+.inactive-dot {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.inactive-dot:hover {
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+/* Loading state styles */
+.image-loading {
+  position: absolute;
+  inset: 0;
+  background-color: #f3f4f6;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Smooth scrolling for the carousel */
+.overflow-x-auto {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Responsive styles */
+@media (max-width: 640px) {
+  .categories-container {
+    padding: 1rem;
+  }
+
+  .w-48 {
+    /* width: 10rem; */
+  }
+}
+
+/* All previous CSS remains exactly the same, adding responsive modal styles at the end */
+
+/* Modal Responsive Behavior */
+@media (max-width: 1024px) {
+  .modal-container {
+    width: 65%;
+    margin: 0.75rem;
+  }
+
+  .modal-header {
+    padding: 0.75rem;
+  }
+
+  .modal-title {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-container {
+    width: 85%;
+    max-height: 75vh;
+    margin: 0.5rem;
+  }
+
+  .modal-overlay {
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .form-container {
+    max-width: 100%;
+    width: 90%;
+    height: auto;
+    min-height: 300px;
+    margin: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .modal-container {
+    width: 95%;
+    margin: 0.25rem;
+    padding: 0.75rem;
+  }
+
+  .modal-header {
+    padding: 0.5rem;
+  }
+
+  .modal-title {
+    font-size: 0.875rem;
+  }
+
+  .form-container {
+    padding: 15px 20px;
+  }
+
+  .close-button {
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+  }
+
+  .categories-container {
+    padding: 0.75rem;
+  }
+
+  .category-title {
+    font-size: 0.875rem;
+  }
+
+  /* Adjust form elements for better mobile experience */
+  .form-group {
+    margin-bottom: 12px;
+  }
+
+  input {
+    padding: 6px;
+  }
+
+  .animated-button {
+    padding: 8px;
+  }
+}
+
+/* Handle very small screens */
+@media (max-width: 480px) {
+  .modal-container {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    height: 100vh;
+    max-height: 100vh;
+  }
+
+  .modal-overlay {
+    padding: 0;
+  }
+
+  .form-container {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    height: 100vh;
+  }
+
+  .close-button {
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+  }
+
+  /* Adjust spacing for better mobile view */
+  .modal-header {
+    padding: 0.5rem;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 20;
+  }
+
+  .categories-flex {
+    flex-direction: column;
+  }
+
+  .categories-flex img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Improve touch targets */
+  .suggestion-tag {
+    padding: 0.75rem 1rem;
+  }
+
+  .item-card {
+    padding: 0.5rem;
+  }
+
+  /* Adjust scrolling behavior */
+  .modal-container {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Handle landscape orientation on mobile */
+@media (max-height: 480px) and (orientation: landscape) {
+  .modal-container {
+    height: auto;
+    max-height: 85vh;
+  }
+
+  .form-container {
+    height: auto;
+    max-height: 85vh;
+  }
+
+  .categories-flex {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .categories-flex img {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/* Handle high-DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+  .modal-container {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .form-container {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+}
+
+/* Improve modal accessibility */
+.modal-container:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+/* Add support for reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+
+  .modal-container,
+  .form-container,
+  .animated-button,
+  .animated-button::before,
+  .item-card,
+  .fade-in,
+  .fade-out {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Add these new styles for item images responsiveness */
+
+/* Base item image styles - refining existing ones */
+.item-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #f9fafb;
+}
+
+.item-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out, transform 0.3s ease;
+}
+
+.item-image.visible {
+  opacity: 1;
+}
+
+/* Grid layout adjustments for different screen sizes */
+@media (min-width: 1280px) {
+  .items-grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.5rem;
+  }
+
+  .item-image-container {
+    height: 180px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .items-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.25rem;
+  }
+
+  .item-image-container {
+    height: 160px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .items-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .item-image-container {
+    height: 140px;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .items-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.875rem;
+  }
+
+  .item-image-container {
+    height: 130px;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 639px) {
+  .items-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .item-image-container {
+    height: 160px;
+  }
+
+  .item-card {
+    padding: 0.5rem;
+  }
+
+  .item-name {
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .items-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  .item-image-container {
+    height: 140px;
+  }
+
+  .item-card {
+    padding: 0.25rem;
+  }
+
+  .item-name {
+    font-size: 0.75rem;
+    margin-top: 0.375rem;
+  }
+}
+
+/* Loading state and placeholder improvements */
+.image-loading {
+  position: absolute;
+  inset: 0;
+  background-color: #f3f4f6;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  border-radius: 8px;
+}
+
+/* Image hover effects */
+@media (hover: hover) {
+  .item-card:hover .item-image {
+    transform: scale(1.05);
+  }
+
+  .item-card:hover .item-image-container {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+  .item-card:active .item-image {
+    transform: scale(0.98);
+  }
+
+  .item-image-container {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Landscape mode optimizations */
+@media (max-height: 480px) and (orientation: landscape) {
+  .items-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+  }
+
+  .item-image-container {
+    height: 100px;
+  }
+
+  .item-name {
+    font-size: 0.7rem;
+  }
+}
+
+/* High-DPI screen optimizations */
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+  .item-image-container {
+    border: 0.5px solid rgba(0, 0, 0, 0.05);
+  }
+}
+
+/* Lazy loading optimization */
+.item-image[loading="lazy"] {
+  background-color: #f3f4f6;
+}
+
+/* Fallback for no-js environments */
+.no-js .item-image {
+  opacity: 1;
+  position: relative;
+}
+
+/* Better focus states for accessibility */
+.item-card:focus-within .item-image-container {
+  outline: 2px solid #4f46e5;
+  outline-offset: 2px;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .item-image {
+    transition: none;
+  }
+
+  .item-card:hover .item-image {
+    transform: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .item-image-container {
+    background-color: #1f2937;
+  }
+
+  .image-loading {
+    background-color: #374151;
+  }
+
+  .item-name {
+    color: #e5e7eb;
+  }
 }
