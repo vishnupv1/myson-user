@@ -139,7 +139,7 @@ const HeaderComponent = () => {
 
         setIsAnimating(true);
         await new Promise((resolve) => setTimeout(resolve, 500));
-        setProductName(placeholderItems[nextIndex]);
+        setProductName(`\u00A0${placeholderItems[nextIndex]}`);
         setIsAnimating(false);
 
         currentIndex = nextIndex;
@@ -280,7 +280,7 @@ const HeaderComponent = () => {
                 placeholder={
                   isFocused
                     ? "Search for products,brands and more.."
-                    : "Search for  "
+                    : "Search for "
                 }
                 value={inputValue}
                 onChange={handleInputChange}
