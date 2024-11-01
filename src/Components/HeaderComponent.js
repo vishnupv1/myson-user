@@ -7,6 +7,7 @@ import {
   faHeart,
   faUser,
   faTimes,
+  faArrowLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebook,
@@ -468,76 +469,162 @@ const HeaderComponent = () => {
 
         {/* Modal with images */}
         {showModal && (
-          <div className="modal-overlay" onClick={closeModal}>
+          <>
             <div
-              className="modal-container"
-              style={{ marginTop: `${inputTop + 10}px` }}
-              onClick={(e) => e.stopPropagation()}
+              className="modal-overlay"
+              style={{ height: "100%" }}
+              onClick={closeModal}
             >
-              <div className="modal-header">
-                {/* <h3 className="modal-title">Best Sellers</h3> */}
-                <button onClick={closeModal} className="close-button">
-                  <svg
-                    className="close-icon"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
-              </div>
-
               <div
-                className="categories-container"
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
+                className="modal-container"
+                onClick={(e) => e.stopPropagation()}
               >
-                <h4
-                  className="text-xl font-semibold mb-4"
+                <div className="modal-header">
+                  {/* <h3 className="modal-title">Best Sellers</h3> */}
+                  <button onClick={closeModal} className="close-button">
+                    {!isMobile ? (
+                      <svg
+                        className="close-icon"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    ) : (
+                      <></>
+                    )}
+                  </button>
+                </div>
+                {isMobile && (
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <div
+                      className="searchbar"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        width: "100%",
+                        padding: "10px 0",
+                        // marginTop: isMobile ? "10px" : "0",
+                      }}
+                    >
+                      <div
+                        className="search-input-wrapper"
+                        style={{
+                          position: "relative",
+                          width: "100%",
+                          maxWidth: "500px",
+                        }}
+                      >
+                        <FontAwesomeIcon
+                          icon={faArrowLeft}
+                          style={{
+                            fontSize: "20px",
+                            color: "grey",
+                            position: "absolute",
+                            left: "10px", // Adjust position as needed
+                            top: "50%",
+                            transform: "translateY(-50%)",
+                            cursor: "pointer",
+                          }}
+                          onClick={closeModal}
+                        />
+                        <input
+                          ref={inputRef}
+                          style={{
+                            border: "none",
+                            width: "100%",
+                            borderRadius: "5px",
+                            backgroundColor: "whitesmoke",
+                            padding: "10px 10px 10px 40px", // Add padding to accommodate the icon
+                          }}
+                          placeholder={
+                            isFocused
+                              ? "Search for products, brands, and more.."
+                              : "Search for "
+                          }
+                          value={inputValue}
+                          onChange={handleInputChange}
+                          onFocus={handleFocus}
+                          onBlur={handleBlur}
+                        />
+                        {!isFocused && !inputValue && (
+                          <div
+                            className={`animated-product ${
+                              isAnimating ? "fade-out" : "fade-in"
+                            }`}
+                            style={{
+                              position: "absolute",
+                              left: "85px",
+                              top: "50%",
+                              transform: "translateY(-50%)",
+                              color: "#999",
+                              pointerEvents: "none",
+                            }}
+                          >
+                            {productName}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )}
+                <div
+                  className="categories-container"
                   style={{
                     display: "flex",
                     justifyContent: "center",
+                    // alignItems: "center",
                   }}
                 >
-                  Best Sellers
-                </h4>
-                <div
-                  className="flex modal-view gap-6 overflow-x-auto pb-4"
-                 
-                >
-                  {categories.map((category, categoryIndex) => (
-                    <div
-                      key={categoryIndex}
-                      className="flex-shrink-0"
-                      onMouseEnter={() => handleMouseEnter(categoryIndex)}
-                      onMouseLeave={() => handleMouseLeave(categoryIndex)}
+                  <div style={{ display: "flex", justifyContent: "left" }}>
+                    <h4
+                      className="text-xl font-semibold mb-4"
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
                     >
-                      <div className="w-48 group">
-                        <div className="relative aspect-square mb-2 rounded-lg overflow-hidden">
-                          {category.items.map((item, itemIndex) => (
-                            <img
-                              key={itemIndex}
-                              src={item.image}
-                              alt={`${category.title} - ${item.name}`}
-                              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-                                itemIndex === currentIndexes[categoryIndex]
-                                  ? "opacity-100"
-                                  : "opacity-0"
-                              }`}
-                            />
-                          ))}
+                      Best Sellers
+                    </h4>
+                  </div>
+                  <div className="flex modal-view gap-6 overflow-x-auto pb-4">
+                    {categories.map((category, categoryIndex) => (
+                      <div
+                        key={categoryIndex}
+                        className="flex-shrink-0"
+                        onMouseEnter={() => handleMouseEnter(categoryIndex)}
+                        onMouseLeave={() => handleMouseLeave(categoryIndex)}
+                      >
+                        <div className="w-48 group">
+                          <div className="relative aspect-square mb-2 rounded-lg overflow-hidden">
+                            {category.items.map((item, itemIndex) => (
+                              <img
+                                key={itemIndex}
+                                src={item.image}
+                                alt={`${category.title} - ${item.name}`}
+                                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+                                  itemIndex === currentIndexes[categoryIndex]
+                                    ? "opacity-100"
+                                    : "opacity-0"
+                                }`}
+                              />
+                            ))}
 
-                          {/* Navigation dots */}
-                          {/* <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1.5">
+                            {/* Navigation dots */}
+                            {/* <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1.5">
                             {category.items.map((_, itemIndex) => (
                               <button
                                 key={itemIndex}
@@ -554,44 +641,45 @@ const HeaderComponent = () => {
                             ))}
                           </div> */}
 
-                          {/* Hover overlay */}
-                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-200" />
-                        </div>
+                            {/* Hover overlay */}
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-200" />
+                          </div>
 
-                        <div className="text-center">
-                          <h5 className="text-sm font-medium text-gray-700 group-hover:text-teal-600 transition-colors">
-                            {category.title}
-                          </h5>
-                          {/* <p className="text-xs text-gray-500 mt-1">
+                          <div className="text-center">
+                            <h5 className="text-sm font-medium text-gray-700 group-hover:text-teal-600 transition-colors">
+                              {category.title}
+                            </h5>
+                            {/* <p className="text-xs text-gray-500 mt-1">
                             {category.items[currentIndexes[categoryIndex]].name}
                           </p> */}
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              {inputValue && (
-                <div className="search-suggestions">
-                  <h4 className="suggestions-title">Popular Searches</h4>
-                  <div className="suggestions-grid">
-                    {[
-                      "Dishwasher under 30000",
-                      "Best Rated Dishwashers",
-                      "Energy Efficient Models",
-                      "Premium Brands",
-                      "Latest Models",
-                      "Budget Friendly",
-                    ].map((suggestion, index) => (
-                      <div key={index} className="suggestion-tag">
-                        {suggestion}
                       </div>
                     ))}
                   </div>
                 </div>
-              )}
+                {inputValue && (
+                  <div className="search-suggestions">
+                    <h4 className="suggestions-title">Popular Searches</h4>
+                    <div className="suggestions-grid">
+                      {[
+                        "Dishwasher under 30000",
+                        "Best Rated Dishwashers",
+                        "Energy Efficient Models",
+                        "Premium Brands",
+                        "Latest Models",
+                        "Budget Friendly",
+                      ].map((suggestion, index) => (
+                        <div key={index} className="suggestion-tag">
+                          {suggestion}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
+          </>
         )}
 
         {/* Mobile Menu */}
