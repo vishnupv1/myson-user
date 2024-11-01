@@ -397,7 +397,7 @@ const HeaderComponent = () => {
               <Container>
                 <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="ms-auto">
-                    <Nav.Link className="nav-link" href="#home">
+                    <Nav.Link className="nav-link" href="/">
                       <FontAwesomeIcon icon={faHome} />{" "}
                       <span className="black-text nav-link">Home</span>
                     </Nav.Link>
@@ -424,43 +424,43 @@ const HeaderComponent = () => {
         >
           <ul className="category-list">
             <li>
-              <a className="black-text" href="#home">
+              <a className="black-text" href="/">
                 Store Locator
               </a>
             </li>
             <li className="separator">|</li>
             <li>
-              <a className="black-text" href="#home">
+              <a className="black-text" href="/">
                 Terms & Conditions
               </a>
             </li>
             <li className="separator">|</li>
             <li>
-              <a className="black-text" href="#home">
+              <a className="black-text" href="/">
                 Privacy Policy
               </a>
             </li>
             <li className="separator">|</li>
             <li>
-              <a className="black-text" href="#home">
+              <a className="black-text" href="/">
                 Dishwasher
               </a>
             </li>
             <li className="separator">|</li>
             <li>
-              <a className="black-text" href="#home">
+              <a className="black-text" href="/">
                 Kitchenware
               </a>
             </li>
             <li className="separator">|</li>
             <li>
-              <a className="black-text" href="#home">
+              <a className="black-text" href="/">
                 Contact
               </a>
             </li>
             <li className="separator">|</li>
             <li>
-              <a className="black-text" href="#home">
+              <a className="black-text" href="/">
                 About
               </a>
             </li>
@@ -714,7 +714,7 @@ const HeaderComponent = () => {
               }}
             >
               <Nav className="ms-auto">
-                <Nav.Link className=" black-text-nav" href="#home">
+                <Nav.Link className=" black-text-nav" href="/">
                   <p
                     style={{ padding: "0px", marginBottom: "0px" }}
                     className="black-text-nav "
@@ -763,7 +763,7 @@ const HeaderComponent = () => {
                 }}
               >
                 <li>
-                  <a className="black-text-nav" href="#home">
+                  <a className="black-text-nav" href="/">
                     Store Locator
                   </a>
                 </li>
