@@ -493,9 +493,27 @@ const HeaderComponent = () => {
                 </button>
               </div>
 
-              <div className="categories-container">
-                <h4 className="text-xl font-semibold mb-4">Best Sellers</h4>
-                <div className="flex gap-6 overflow-x-auto pb-4">
+              <div
+                className="categories-container"
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <h4
+                  className="text-xl font-semibold mb-4"
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  Best Sellers
+                </h4>
+                <div
+                  className="flex modal-view gap-6 overflow-x-auto pb-4"
+                 
+                >
                   {categories.map((category, categoryIndex) => (
                     <div
                       key={categoryIndex}
@@ -598,7 +616,7 @@ const HeaderComponent = () => {
                 fontWeight: "bold",
                 marginTop: "15px",
                 // marginLeft: "30px",
-                padding:"0px 10px",
+                padding: "0px 10px",
                 // fontFamily: "sans-serif",
               }}
             >
@@ -675,7 +693,7 @@ const HeaderComponent = () => {
                   flexDirection: "column",
                   textAlign: "left",
                   gap: "10px",
-                  alignItems:"baseline"
+                  alignItems: "baseline",
                 }}
               >
                 <li>
