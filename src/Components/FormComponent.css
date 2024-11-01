@@ -623,9 +623,9 @@ button.w-2.h-2.rounded-full:focus {
     padding: 1rem;
   }
 
-  .w-48 {
+  /* .w-48 { */
     /* width: 10rem; */
-  }
+  /* } */
 }
 
 /* All previous CSS remains exactly the same, adding responsive modal styles at the end */
