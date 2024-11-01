@@ -550,33 +550,12 @@ const HeaderComponent = () => {
                             backgroundColor: "whitesmoke",
                             padding: "10px 10px 10px 40px", // Add padding to accommodate the icon
                           }}
-                          placeholder={
-                            isFocused
-                              ? "Search for products, brands, and more.."
-                              : "Search for "
-                          }
+                          placeholder="Search for products and more.."
                           value={inputValue}
                           onChange={handleInputChange}
                           onFocus={handleFocus}
                           onBlur={handleBlur}
                         />
-                        {!isFocused && !inputValue && (
-                          <div
-                            className={`animated-product ${
-                              isAnimating ? "fade-out" : "fade-in"
-                            }`}
-                            style={{
-                              position: "absolute",
-                              left: "85px",
-                              top: "50%",
-                              transform: "translateY(-50%)",
-                              color: "#999",
-                              pointerEvents: "none",
-                            }}
-                          >
-                            {productName}
-                          </div>
-                        )}
                       </div>
                     </div>
                   </div>
@@ -586,7 +565,6 @@ const HeaderComponent = () => {
                   style={{
                     display: "flex",
                     justifyContent: "center",
-                    // alignItems: "center",
                   }}
                 >
                   <div style={{ display: "flex", justifyContent: "left" }}>
