@@ -1,16 +1,43 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import products from "../Constants/Products";
-import "./CardComponent.css"; // Import the external CSS file
-import { useMediaQuery } from "react-responsive"; // Install react-responsive package
+import "./CardComponent.css";
+import { useMediaQuery } from "react-responsive";
 import { useNavigate } from "react-router-dom";
+import { getProducts } from "../services/productService";
+
 function CardComponent(props) {
   const navigate = useNavigate();
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
-  const handleSelectProduct = (index) => {
-    navigate(`/product/${index}`);
+
+  const [adminProducts, setAdminProducts] = useState([]);
+  const hasFetchedData = useRef(false);
+
+  useEffect(() => {
+    if (!hasFetchedData.current) {
+      hasFetchedData.current = true;
+      getProducts()
+        .then((data) => {
+          if (data.length) {
+            setAdminProducts(data);
+          } else {
+            // Use the default products if API returns an empty array
+            setAdminProducts(products);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching products:", error);
+          // Fall back to default products on error
+          setAdminProducts(products);
+        });
+    }
+  }, []);
+
+  const handleSelectProduct = (id) => {
+    navigate(`/product/${id}`);
   };
+
   return (
     <div className="main-container">
       <h4
@@ -24,25 +51,21 @@ function CardComponent(props) {
       </h4>
 
       <div className="card-container">
-        {products.map((el) => (
+        {adminProducts.map((el) => (
           <div
             className="card-wrapper"
-            key={el.id}
-            onClick={() => {
-              handleSelectProduct(el.id);
-            }}
+            key={el._id}
+            onClick={() => handleSelectProduct(el._id)}
           >
             <Card className="card">
               <Card.Img
                 className="card-image img-fluid"
                 variant="top"
-                src={el.imageUrl[0]}
+                src={el.images[0]}
               />
-              <div>
-                <Card.Body>
-                  <Card.Title className="card-title">{el.name}</Card.Title>
-                </Card.Body>
-              </div>
+              <Card.Body>
+                <Card.Title className="card-title">{el.name}</Card.Title>
+              </Card.Body>
               <Button className="btn btn-primary card-button">
                 {isMobile ? "ADD +" : "ADD TO CART"}
               </Button>

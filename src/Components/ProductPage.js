@@ -5,21 +5,46 @@ import FooterComponent from "./FooterComponent";
 import HeaderComponent from "./HeaderComponent";
 import { useParams } from "react-router-dom";
 import products from "../Constants/Products";
+import { getSingleProduct } from "../services/productService";
 const ProductPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [mainImage, setMainImage] = useState("");
-  useEffect(() => {
-    const selectedProduct = products.find((item) => item.id === parseInt(id));
-    console.log(selectedProduct);
 
-    if (selectedProduct) {
-      setProduct(selectedProduct);
-      setMainImage(selectedProduct.imageUrl[0]);
-    }
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const selectedProduct = await getSingleProduct(id);
+        setProduct(selectedProduct);
+        setMainImage(selectedProduct.images[0]);
+      } catch (error) {
+        console.error(
+          "Error fetching product, falling back to local data:",
+          error
+        );
+        const fallbackProduct = products.find(
+          (item) => item._id === parseInt(id)
+        );
+
+        if (fallbackProduct) {
+          setProduct(fallbackProduct);
+          setMainImage(fallbackProduct.images[0]);
+        }
+      }
+    };
+
+    fetchProduct();
   }, [id]);
+
   if (!product) {
-    return <div>Loading...</div>;
+    return (
+      <>
+        <div className="loader-container">
+          <div className="spinner"></div>
+          <div>Loading...</div>
+        </div>
+      </>
+    );
   }
   return (
     <>
@@ -30,7 +55,7 @@ const ProductPage = () => {
             <ProductImageZoom imageSrc={mainImage} />
           </div>
           <div className="product-preview-images">
-            {product.imageUrl.map((image) => (
+            {product.images?.map((image) => (
               <img
                 key={product.id} // Use the index as key since each image might be different
                 src={image}
@@ -63,7 +88,7 @@ const ProductPage = () => {
           </div>
           <div className="product-description">
             <p>
-              <ol style={{padding:'12px',margin:'0px'}}>
+              <ol style={{ padding: "12px", margin: "0px" }}>
                 <li>8mm toughened clear glass</li>
                 <li>Electronic digital thermostat for refrigeration counter</li>
                 <li>Rear removable electrocoated aluminium sliding doors</li>
@@ -80,9 +105,7 @@ const ProductPage = () => {
             <div style={{ margin: "0px", padding: "0px" }}>
               <p style={{ color: "#878787", textAlign: "left" }}>
                 Delivery:{" "}
-                <span style={{ color: "#212121" }}>
-                  Within 2 days.
-                </span>
+                <span style={{ color: "#212121" }}>Within 2 days.</span>
               </p>
             </div>
 
@@ -96,7 +119,7 @@ const ProductPage = () => {
                   </tr>
                 </thead>
                 <tbody className="table-body">
-                  {product.specifications.map((item) => (
+                  {product?.specifications?.map((item) => (
                     <tr>
                       <td style={{ color: "#878787" }}>{item.word}</td>
                       <td style={{ fontSize: "bold", color: "black" }}>
