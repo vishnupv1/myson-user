@@ -729,10 +729,10 @@ button.w-2.h-2.rounded-full:focus {
   }
 
   .form-container {
-    width: 100%;
+    /* width: 100%; */
     margin: 0;
     border-radius: 0;
-    height: 100vh;
+    /* height: 100vh; */
   }
 
   .close-button {

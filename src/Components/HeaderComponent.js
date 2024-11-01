@@ -178,12 +178,11 @@ const HeaderComponent = () => {
   }, [categories]);
   const placeholderItems = useMemo(() => {
     return [
-      `"Dish Wahser"`,
       `"Bosch"`,
-      `"LG"`,
-      `"Premium"`,
-      `"Samsung"`,
-      `"Haier"`,
+      `"Blue Star"`,
+      `"Winter Halter"`,
+      `"Convotherm"`,
+      `"Classeq"`,
     ];
   }, []);
   const inputRef = React.useRef(null);
@@ -206,13 +205,13 @@ const HeaderComponent = () => {
 
         setIsAnimating(true);
         await new Promise((resolve) => setTimeout(resolve, 500));
-        setProductName(`\u00A0${placeholderItems[nextIndex]}`);
+        setProductName(`\u00A0 \u00A0${placeholderItems[nextIndex]}`);
         setIsAnimating(false);
 
         currentIndex = nextIndex;
       };
 
-      setProductName(`\u00A0 ${placeholderItems[0]}`);
+      setProductName(`\u00A0\u00A0 ${placeholderItems[0]}`);
       interval = setInterval(animatePlaceholder, 3000);
     }
 
@@ -272,7 +271,7 @@ const HeaderComponent = () => {
           style={{
             display: "flex",
             flexDirection: isMobile ? "column" : "row",
-            alignItems: "center",
+            alignItems: !isMobile && "center",
             justifyContent: "space-between",
           }}
         >
@@ -306,7 +305,7 @@ const HeaderComponent = () => {
                 }}
                 className="img-fluid"
                 style={{
-                  width: "100%",
+                  // width: "100%",
                   maxWidth: "300px",
                   height: "60px",
                   maxHeight: "100px",
@@ -378,7 +377,7 @@ const HeaderComponent = () => {
                 border: "none",
                 borderRadius: "5px",
                 cursor: "pointer",
-                marginLeft: "-8px",
+                // marginLeft: "-8px",
                 padding: "10px",
                 color: "white",
                 width: "45px",
@@ -582,12 +581,12 @@ const HeaderComponent = () => {
           <div
             className="mobile-menu"
             style={{
-              transform: isMenuOpen ? "translateX(0)" : "translateX(100%)",
+              transform: isMenuOpen ? "translateX(0)" : "translateX(-100%)",
               transition: "transform 0.3s ease-in-out",
               position: "fixed",
               top: 0,
               right: 0,
-              width: "80%",
+              width: "100%",
               height: "100vh",
               backgroundColor: "whitesmoke",
               zIndex: 1000,
@@ -598,8 +597,9 @@ const HeaderComponent = () => {
               style={{
                 fontWeight: "bold",
                 marginTop: "15px",
-                marginLeft: "30px",
-                fontFamily: "sans-serif",
+                // marginLeft: "30px",
+                padding:"0px 10px",
+                // fontFamily: "sans-serif",
               }}
             >
               Menu
@@ -608,7 +608,7 @@ const HeaderComponent = () => {
               onClick={handleCloseMenu}
               style={{
                 background: "none",
-                color: "red",
+                color: "#1A181E",
                 border: "none",
                 cursor: "pointer",
                 position: "absolute",
@@ -624,32 +624,32 @@ const HeaderComponent = () => {
             <div
               className="navbar"
               style={{
-                marginTop: "30px",
+                // marginTop: "30px",
                 borderBottom: "solid 3px whitesmoke",
                 borderTop: "solid 0.5px black",
               }}
             >
               <Nav className="ms-auto">
-                <Nav.Link className=" black-text" href="#home">
+                <Nav.Link className=" black-text-nav" href="#home">
                   <p
                     style={{ padding: "0px", marginBottom: "0px" }}
-                    className="black-text "
+                    className="black-text-nav "
                   >
                     Home
                   </p>
                 </Nav.Link>
-                <Nav.Link className=" black-text" href="#about">
+                <Nav.Link className=" black-text-nav" href="#about">
                   <p
                     style={{ padding: "0px", marginBottom: "0px" }}
-                    className="black-text"
+                    className="black-text-nav"
                   >
                     Wishlist
                   </p>
                 </Nav.Link>
-                <Nav.Link className=" black-text" href="#store-locator">
+                <Nav.Link className=" black-text-nav" href="#store-locator">
                   <p
                     style={{ padding: "0px", marginBottom: "0px" }}
-                    className="black-text"
+                    className="black-text-nav"
                   >
                     Account
                   </p>
@@ -670,45 +670,46 @@ const HeaderComponent = () => {
                 className="category-list"
                 style={{
                   listStyle: "none",
-                  padding: "0",
+                  padding: "0px 10px",
                   display: "flex",
                   flexDirection: "column",
                   textAlign: "left",
                   gap: "10px",
+                  alignItems:"baseline"
                 }}
               >
                 <li>
-                  <a className="black-text" href="#home">
+                  <a className="black-text-nav" href="#home">
                     Store Locator
                   </a>
                 </li>
                 <li>
-                  <a className="black-text" href="#terms">
+                  <a className="black-text-nav" href="#terms">
                     Terms & Conditions
                   </a>
                 </li>
                 <li>
-                  <a className="black-text" href="#privacy">
+                  <a className="black-text-nav" href="#privacy">
                     Privacy Policy
                   </a>
                 </li>
                 <li>
-                  <a className="black-text" href="#dishwasher">
+                  <a className="black-text-nav" href="#dishwasher">
                     Dishwasher
                   </a>
                 </li>
                 <li>
-                  <a className="black-text" href="#kitchenware">
+                  <a className="black-text-nav" href="#kitchenware">
                     Kitchenware
                   </a>
                 </li>
                 <li>
-                  <a className="black-text" href="#contact">
+                  <a className="black-text-nav" href="#contact">
                     Contact
                   </a>
                 </li>
                 <li>
-                  <a className="black-text" href="#about">
+                  <a className="black-text-nav" href="#about">
                     About
                   </a>
                 </li>

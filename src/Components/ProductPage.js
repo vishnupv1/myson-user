@@ -26,6 +26,9 @@ const ProductPage = () => {
       <HeaderComponent />
       <div className="product-page">
         <div className="product-image-container">
+          <div className="product-main-image">
+            <ProductImageZoom imageSrc={mainImage} />
+          </div>
           <div className="product-preview-images">
             {product.imageUrl.map((image) => (
               <img
@@ -36,9 +39,6 @@ const ProductPage = () => {
                 onClick={() => setMainImage(image)}
               />
             ))}
-          </div>
-          <div className="product-main-image">
-            <ProductImageZoom imageSrc={mainImage} />
           </div>
         </div>
         <div className="product-details">
@@ -63,7 +63,7 @@ const ProductPage = () => {
           </div>
           <div className="product-description">
             <p>
-              <ol>
+              <ol style={{padding:'12px',margin:'0px'}}>
                 <li>8mm toughened clear glass</li>
                 <li>Electronic digital thermostat for refrigeration counter</li>
                 <li>Rear removable electrocoated aluminium sliding doors</li>
@@ -81,7 +81,7 @@ const ProductPage = () => {
               <p style={{ color: "#878787", textAlign: "left" }}>
                 Delivery:{" "}
                 <span style={{ color: "#212121" }}>
-                  Delivery within 2 days.
+                  Within 2 days.
                 </span>
               </p>
             </div>

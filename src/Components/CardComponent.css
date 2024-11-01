@@ -76,7 +76,7 @@
     border-radius: 0 0 15px 15px !important;
     height: 45px !important;
     font-weight: bold !important;
-    font-family: sans-serif !important;
+    /* font-family: sans-serif !important; */
     padding: 5px !important;
     flex-shrink: 0; /* Prevent button from shrinking */
 
