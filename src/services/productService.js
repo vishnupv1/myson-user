@@ -14,6 +14,15 @@ export const getProducts = async () => {
     throw error;
   }
 };
+export const getBrandProducts = async (brand) => {
+  try {
+    const res = await axios.get(`${API_URL}/brand/?brand=${brand}`);
+    return res.data;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    throw error;
+  }
+};
 export const getSingleProduct = async (id) => {
   try {
     const res = await axios.get(`${API_URL}/${id}`);

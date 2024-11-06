@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-unused-vars */
 import axios from "axios";
 
 // Base URL (optional, if you're using a proxy in React or making calls to the same server)
@@ -16,9 +16,9 @@ export const getBrands = async () => {
 };
 
 // Add a new Brand
-export const addBrand = async (Brand) => {
+export const addBrand = async (brand) => {
   try {
-    const res = await axios.post(API_URL, Brand);
+    const res = await axios.post(API_URL, brand);
     return res.data;
   } catch (error) {
     console.error("Error adding Brand:", error);
@@ -27,7 +27,7 @@ export const addBrand = async (Brand) => {
 };
 
 // Edit a Brand by ID
-export const editBrand = async ( updatedBrand,id) => {
+export const editBrand = async (updatedBrand, id) => {
   try {
     const res = await axios.put(`${API_URL}/${id}`, updatedBrand);
     return res.data; // Return the updated Brand data if needed
