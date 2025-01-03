@@ -437,6 +437,10 @@ h3 {
 .w-full {
   width: 100%;
 }
+.w-full-card {
+  width: 30%;
+}
+
 
 .h-full {
   height: 100%;

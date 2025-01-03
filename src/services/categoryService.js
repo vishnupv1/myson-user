@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-unused-vars */
 import axios from "axios";
 
 // Base URL (optional, if you're using a proxy in React or making calls to the same server)

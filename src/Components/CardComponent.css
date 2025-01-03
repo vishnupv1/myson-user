@@ -53,6 +53,13 @@
   gap: 25px;
   padding-bottom: 10px;
   padding-top: 20px;
+  flex-wrap: wrap;
+}
+.filters-container {
+  display: none; /* Hide filters on mobile by default */
+}
+.filters-container.show {
+  display: block; /* Show filters when toggled */
 }
 
 .card-wrapper {
@@ -127,6 +134,7 @@
   }
 
   .brand-card-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 products per row */
     display: flex;
     overflow-x: auto;
     flex-wrap: wrap;
