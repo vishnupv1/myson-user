@@ -12,7 +12,7 @@ const TopBrands = () => {
     // "https://www.dihr.com/sync/img/HT 11 ECO.jpg",
     "https://vtlogo.com/wp-content/uploads/2021/01/astoria-vector-logo-small.png",
     "https://getlogo.net/wp-content/uploads/2021/08/hamilton-beach-logo-vector.png",
-    "https://upload.wikimedia.org/wikipedia/commons/6/69/Winterhalter_Logo_CMYK_300dpi.jpg",
+    "https://mfk.co.id/wp-content/uploads/2020/12/winterhalter-logo.png",
     "https://www.pi-india.com/uploaded_files/cf66d20b8daffd.jpg",
     "https://media.licdn.com/dms/image/v2/D4D0BAQGByKydIdtFMw/company-logo_200_200/company-logo_200_200/0/1694007804218?e=1744243200&v=beta&t=3tkU5CbfvkTowK6YTDJCpvIzQt9fYT7QW6c2iEy-81A",
     "https://media.licdn.com/dms/image/v2/C560BAQH8UuwERcv21Q/company-logo_200_200/company-logo_200_200/0/1630567287582/hoshizaki_america_logo?e=1744243200&v=beta&t=knzCSJXLZ5wAALXTruWxZucgrMPLC5mWF_HuDvCGHME",
