@@ -95,23 +95,37 @@ const TopBrands = () => {
         <div ref={contentRef} style={{ display: "inline-block" }}>
           {images.concat(images).map((imageSrc, index) => (
             <div
-              className="top-brand-container"
+              className="top-brand-card"
               key={index}
               style={{
                 textAlign: "center",
                 margin: "0 10px",
                 display: "inline-block",
                 verticalAlign: "top",
+                borderRadius: "10px",
+                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                padding: "10px",
+                backgroundColor: "white",
               }}
             >
               <img
                 src={imageSrc}
                 className="top-brand-image"
-                alt={`category-${index % images.length}`}
+                alt={`brand-${index % images.length}`}
+                style={{
+                  width: "100px",
+                  height: "100px",
+                  objectFit: "contain",
+                  marginBottom: "10px",
+                }}
               />
               <div
-                className="black-text top-brand-name"
-                style={{ marginTop: "5px", color: "var(--black-12)" }}
+                className="top-brand-name"
+                style={{
+                  fontWeight: "500",
+                  fontSize: "14px",
+                  color: "#333",
+                }}
               >
                 {names[index % names.length]}
               </div>
