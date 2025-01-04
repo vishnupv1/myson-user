@@ -90,7 +90,7 @@ const TopBrands = () => {
         style={{
           overflowX: "hidden",
           whiteSpace: "nowrap",
-          pb:2
+          padding: "2px",
         }}
       >
         <div ref={contentRef} style={{ display: "inline-block" }}>
@@ -104,7 +104,7 @@ const TopBrands = () => {
                 display: "inline-block",
                 verticalAlign: "top",
                 borderRadius: "10px",
-                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                boxShadow: "0px 1px 4px 2px rgba(0, 0, 0, 0.1)",
                 padding: "10px",
                 backgroundColor: "white",
               }}
