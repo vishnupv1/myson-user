@@ -104,7 +104,7 @@ const TopBrands = () => {
                 display: "inline-block",
                 verticalAlign: "top",
                 borderRadius: "10px",
-                boxShadow: "0px 2px 2px 0px rgba(0, 0, 0, 0.2)",
+                boxShadow: "0px 0.2px 2px 0px rgba(0, 0, 0, 0.2)",
                 padding: "10px",
                 backgroundColor: "white",
               }}
