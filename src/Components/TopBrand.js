@@ -29,7 +29,7 @@ const TopBrands = () => {
     // "Classeq",
     // "Blue star",
     // "Bosch",
-    "Acstoria",
+    "Astoria",
     "Hamilton Beach",
     "Winter halter",
     "Stella",
@@ -90,6 +90,7 @@ const TopBrands = () => {
         style={{
           overflowX: "hidden",
           whiteSpace: "nowrap",
+          pb:2
         }}
       >
         <div ref={contentRef} style={{ display: "inline-block" }}>
