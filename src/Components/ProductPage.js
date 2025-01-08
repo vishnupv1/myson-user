@@ -84,7 +84,14 @@ const ProductPage = () => {
             </span>
           </h6>
           <div className="product-actions">
-            <button className="enquire-btn">Enquire Now</button>
+            <a
+              href="https://wa.me/+919447458735?text=Hi, I would like to enquire about your services."
+              className="enquire-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Enquire Now
+            </a>{" "}
           </div>
           <div className="product-description">
             <p>
