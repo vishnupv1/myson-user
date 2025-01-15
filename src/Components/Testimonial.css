@@ -11,7 +11,7 @@
 
 .testimonial-card {
   background-color: white;
-  padding: 20px;
+  padding: 8px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -35,9 +35,13 @@
 }
 
 .testimonial-author {
-  margin-top: 10px;
+  /* margin-top: 2px; */
   font-weight: bold;
   color: #333;
+}
+
+.testimonial-content p {
+  padding: 0px 10px 0px 10px !important;
 }
 
 h3 {

@@ -19,7 +19,7 @@ const FooterComponent = () => {
             alt="Company Logo"
             className="image-fluid"
           />
-          <p style={{ width: "100%", textWrap: "none" ,fontWeight:'normal'}}>
+          <p style={{ width: "100%", textWrap: "none" ,fontWeight:'normal',color:'grey'}}>
             Since our establishment in 2018, MYSON has swiftly risen as India's
             leading hub for pet parents. With a wide array of furniture and
             kitchenwares, we fulfill all your kitchen requirements with
