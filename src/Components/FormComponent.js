@@ -31,11 +31,17 @@ const ConsultationForm = () => {
       {showForm && (
         <div className="overlay">
           <div className="form-container">
-            <button className="close-button" onClick={handleClose}>
-              <CloseIcon></CloseIcon>
-            </button>
-            <h5 style={{ fontWeight: "bolder", textAlign: "center" }}>
+            <h5
+              style={{
+                fontWeight: "bolder",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
               Get a Free Consultation
+              <button className="close-button" onClick={handleClose}>
+                <CloseIcon></CloseIcon>
+              </button>
             </h5>
             <form style={{ marginTop: "25px" }} onSubmit={handleSubmit}>
               <div className="form-group">
