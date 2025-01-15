@@ -66,7 +66,7 @@ function CardComponent(props) {
               <Card.Body>
                 <Card.Title className="card-title">{el.name}</Card.Title>
               </Card.Body>
-              <Button className="btn btn-primary card-button">
+              <Button className="card-button">
                 {isMobile ? "ADD +" : "ADD TO CART"}
               </Button>
             </Card>

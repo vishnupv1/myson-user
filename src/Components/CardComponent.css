@@ -93,8 +93,10 @@
 .card-button {
   width: 100% !important;
   color: white !important;
-  background-color: black !important;
+  background-color: rgb(255, 0, 0) !important;
   border-radius: 0 0 15px 15px !important;
+  /* background-color: your-color !important; */
+  border: none !important;
   height: 45px !important;
   font-weight: bold !important;
   /* font-family: sans-serif !important; */
